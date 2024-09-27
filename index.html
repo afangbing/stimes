@@ -1,0 +1,2383 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.js" type="application/javascript"></script>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/moment.js/2.29.1/moment.min.js" type="application/javascript"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/lodash.js/4.17.21/lodash.min.js" type="application/javascript"></script>
+    <style>
+        .loader {
+            opacity: 0.2;
+            --size: 100vh;
+            --duration: 2s;
+            --logo-color: #2b2be5;
+            --background: linear-gradient(
+                    0deg,
+                    rgba(43, 43, 229, 0.2) 0%,
+                    rgba(100, 100, 100, 0.1) 100%
+            );
+            height: var(--size);
+            aspect-ratio: 1;
+            position: relative;
+            margin: auto;
+        }
+
+        .loader .box {
+            position: absolute;
+            background: rgb(43, 43, 229);
+            background: var(--background);
+            border-radius: 50%;
+            border-top: 1px solid rgb(40, 112, 253);
+            box-shadow: rgb(109, 160, 253) 0px 10px 10px -0px;
+            backdrop-filter: blur(5px);
+            animation: ripple var(--duration) infinite ease-in-out;
+        }
+
+        .loader .box:nth-child(1) {
+            inset: 40%;
+            z-index: 99;
+        }
+
+        .loader .box:nth-child(2) {
+            inset: 30%;
+            z-index: 98;
+            animation-delay: 0.2s;
+        }
+
+        .loader .box:nth-child(3) {
+            inset: 20%;
+            z-index: 97;
+            animation-delay: 0.4s;
+        }
+
+        .loader .box:nth-child(4) {
+            inset: 10%;
+            z-index: 96;
+            animation-delay: 0.6s;
+        }
+
+        .loader .box:nth-child(5) {
+            inset: 0%;
+            z-index: 95;
+            animation-delay: 0.8s;
+        }
+
+        .loader .logo {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
+            padding: 30%;
+        }
+
+        .loader .logo svg {
+            fill: var(--logo-color);
+            width: 100%;
+            animation: color-change var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 10px -0px;
+            }
+            50% {
+                transform: scale(1.3);
+                box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 20px -0px;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 10px -0px;
+            }
+        }
+
+        @keyframes color-change {
+            0% {
+                fill: var(--logo-color);
+            }
+            50% {
+                fill: white;
+            }
+            100% {
+                fill: var(--logo-color);
+            }
+        }
+
+    </style>
+</head>
+<body class="fixed w-full h-full bg-[#111111]">
+
+<div id="app">
+    <div class="absolute bottom-0 w-full text-center">
+        <div class="scene !scale-[0.7] origin-bottom">
+            <div class="forest">
+                <div class="tree tree1">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                </div>
+
+                <div class="tree tree2">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+
+                <div class="tree tree3">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+
+                <div class="tree tree4">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+
+                <div class="tree tree5">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+
+                <div class="tree tree6">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+
+                <div class="tree tree7">
+                    <div class="branch branch-top"></div>
+                    <div class="branch branch-middle"></div>
+                    <div class="branch branch-bottom"></div>
+                </div>
+            </div>
+
+            <div class="tent">
+                <div class="roof"></div>
+                <div class="roof-border-left">
+                    <div class="roof-border roof-border1"></div>
+                    <div class="roof-border roof-border2"></div>
+                    <div class="roof-border roof-border3"></div>
+                </div>
+                <div class="entrance">
+                    <div class="door left-door">
+                        <div class="left-door-inner"></div>
+                    </div>
+                    <div class="door right-door">
+                        <div class="right-door-inner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floor">
+                <div class="ground ground1"></div>
+                <div class="ground ground2"></div>
+            </div>
+
+            <div class="fireplace">
+                <div class="support"></div>
+                <div class="support"></div>
+                <div class="bar"></div>
+                <div class="hanger"></div>
+                <div class="smoke"></div>
+                <div class="pan"></div>
+                <div class="fire">
+                    <div class="line line1">
+                        <div class="particle particle1"></div>
+                        <div class="particle particle2"></div>
+                        <div class="particle particle3"></div>
+                        <div class="particle particle4"></div>
+                    </div>
+                    <div class="line line2">
+                        <div class="particle particle1"></div>
+                        <div class="particle particle2"></div>
+                        <div class="particle particle3"></div>
+                        <div class="particle particle4"></div>
+                    </div>
+                    <div class="line line3">
+                        <div class="particle particle1"></div>
+                        <div class="particle particle2"></div>
+                        <div class="particle particle3"></div>
+                        <div class="particle particle4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-wrapper">
+                <div class="time">
+                    <div class="day"></div>
+                    <div class="night">
+                        <div class="moon"></div>
+                        <div class="star star1 star-big"></div>
+                        <div class="star star2 star-big"></div>
+                        <div class="star star3 star-big"></div>
+                        <div class="star star4"></div>
+                        <div class="star star5"></div>
+                        <div class="star star6"></div>
+                        <div class="star star7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute w-full" style="z-index:999;top:calc(50vh - 270px)" >
+        <div class="flex flex-col items-center h-screen w-[700px] mx-auto">
+            <div class="text-gray-200 text-2xl py-5 bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-gray-200">
+                漫漫人生路 , 距离退休还有
+            </div>
+            <div class="text-white text-8xl text-center w-full">
+                <div class="my-10 dowebok mt-[300px] text-shadow-xl bg-clip-text text-white">
+                    {{ remainDays }} 天
+                </div>
+                <hr>
+                <div class="text-white  text-lg">
+                    {{ currentDate }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute top w-full h-full" style="z-index:998" >
+    <div class="loader opacity-20">
+        <div class="box">
+            <div class="logo">
+            </div>
+        </div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    </div>
+
+    <div class="absolute w-full h-full" style="z-index:1;top:calc(50vh - 220px)" >
+    <div class="w-[700px] rounded-3xl mx-auto h-64 my-10 bg-[#111]" style="z-index:1">
+        <a class="switcher" href="#"></a>
+        <div class="screen glitch">
+            <div class="clock" :class="{'is-off':second_passed}">
+                <span class="time_clock" :data-time="realTime">{{realTime}}</span>
+            </div>
+            <div class="figure"></div>
+            <div class="figure-mask"></div>
+        </div>
+    </div>
+    </div>
+</div>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+    *,
+    *:before,
+    *:after {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    html,
+    body {
+        height: 100%;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        background: #111;
+        color: #fff;
+    }
+    a.switcher {
+        display: block;
+        position: fixed;
+        text-decoration: none;
+        z-index: 999999999999;
+        right: 20px;
+        bottom: 20px;
+        width: 16px;
+        height: 16px;
+        background: transparent;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        opacity: 0.15;
+        transition: opacity 0.15s;
+    }
+    a.switcher:hover {
+        opacity: 1;
+    }
+    a.switcher:before {
+        display: block;
+        content: '';
+        position: absolute;
+        border-radius: 4px;
+        width: 2px;
+        height: 5px;
+        background: #fff;
+        top: 0;
+        left: 5px;
+    }
+    .screen {
+        position: relative;
+        z-index: 1;
+        widht: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .figure {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        border-top: 200px solid #fff;
+        border-right: 100px solid transparent;
+        border-left: 100px solid transparent;
+        border-bottom: 0 solid transparent;
+    }
+    .figure:before {
+        display: block;
+        content: '';
+        position: absolute;
+        z-index: 99;
+        width: 0;
+        height: 0;
+        top: -194px;
+        left: -90px;
+        margin: auto;
+        border-top: 180px solid #111;
+        border-right: 90px solid transparent;
+        border-left: 90px solid transparent;
+        border-bottom: 0 solid transparent;
+    }
+    .figure-mask {
+        display: block;
+        position: absolute;
+        z-index: 99;
+        width: 0;
+        height: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        border-top: 200px solid transparent;
+        border-right: 100px solid #111;
+        border-left: 100px solid #111;
+        border-bottom: 0 solid transparent;
+    }
+    .clock {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        width: 720px;
+        height: 128px;
+        text-align: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        cursor: default;
+    }
+    .clock span {
+        display: block;
+        position: relative;
+        font-size: 128px;
+        line-height: 1;
+    }
+    .clock.is-off {
+        -webkit-animation: is-off 2s linear infinite !important;
+        animation: is-off 2s linear infinite !important;
+    }
+    .glitch:before {
+        position: absolute;
+        z-index: 999999;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        -webkit-animation: bg-move 2s linear infinite;
+        animation: bg-move 2s linear infinite;
+        background-size: 100% 8px;
+        background-image: linear-gradient(0, rgba(255,255,255,0.05) 10%, transparent 10%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 60%, transparent 60%, transparent);
+    }
+    .glitch .figure,
+    .glitch .figure-mask {
+        transform: skewX(0deg) scaleY(1);
+        -webkit-animation: tr-bag 4s linear infinite;
+        animation: tr-bag 4s linear infinite;
+    }
+    .glitch .clock {
+        transform: skewX(0deg) scaleY(1);
+        -webkit-animation: clock-bag 4s linear infinite;
+        animation: clock-bag 4s linear infinite;
+    }
+    .glitch .clock span:before,
+    .glitch .clock span:after {
+        display: block;
+        content: attr(data-time);
+        position: absolute;
+        top: 0;
+        color: #fff;
+        background: #111;
+        overflow: hidden;
+        width: 720px;
+        height: 128px;
+        clip: rect(0, 900px, 0, 0);
+    }
+    .glitch .clock span:before {
+        left: -2px;
+        text-shadow: 2px 0 #00f;
+        animation: c2 1s infinite linear alternate-reverse;
+    }
+    .glitch .clock span:after {
+        left: 3px;
+        text-shadow: -2px 0 #f00;
+        animation: c1 2s infinite linear alternate-reverse;
+    }
+    @-webkit-keyframes is-off {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        56% {
+            opacity: 0;
+        }
+        57% {
+            opacity: 0;
+        }
+        58% {
+            opacity: 1;
+        }
+        71% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        72% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        73% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        80% {
+            opacity: 1;
+        }
+        81% {
+            opacity: 0;
+        }
+        84% {
+            opacity: 0;
+        }
+        85% {
+            opacity: 1;
+        }
+        91% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+            color: #fff;
+        }
+        92% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+            color: #008000;
+        }
+        93% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+            color: #fff;
+        }
+    }
+    @keyframes is-off {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        56% {
+            opacity: 0;
+        }
+        57% {
+            opacity: 0;
+        }
+        58% {
+            opacity: 1;
+        }
+        71% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        72% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        73% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        80% {
+            opacity: 1;
+        }
+        81% {
+            opacity: 0;
+        }
+        84% {
+            opacity: 0;
+        }
+        85% {
+            opacity: 1;
+        }
+        91% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+            color: #fff;
+        }
+        92% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+            color: #008000;
+        }
+        93% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+            color: #fff;
+        }
+    }
+    @-webkit-keyframes c1 {
+        0% {
+            clip: rect(51px, 9999px, 80px, 0);
+        }
+        5% {
+            clip: rect(12px, 9999px, 55px, 0);
+        }
+        10% {
+            clip: rect(31px, 9999px, 92px, 0);
+        }
+        15.000000000000002% {
+            clip: rect(88px, 9999px, 49px, 0);
+        }
+        20% {
+            clip: rect(84px, 9999px, 32px, 0);
+        }
+        25% {
+            clip: rect(36px, 9999px, 73px, 0);
+        }
+        30.000000000000004% {
+            clip: rect(19px, 9999px, 10px, 0);
+        }
+        35.00000000000001% {
+            clip: rect(31px, 9999px, 56px, 0);
+        }
+        40% {
+            clip: rect(93px, 9999px, 30px, 0);
+        }
+        45% {
+            clip: rect(5px, 9999px, 22px, 0);
+        }
+        50% {
+            clip: rect(86px, 9999px, 39px, 0);
+        }
+        55% {
+            clip: rect(95px, 9999px, 99px, 0);
+        }
+        60.00000000000001% {
+            clip: rect(98px, 9999px, 79px, 0);
+        }
+        65% {
+            clip: rect(30px, 9999px, 33px, 0);
+        }
+        70.00000000000001% {
+            clip: rect(79px, 9999px, 15px, 0);
+        }
+        75% {
+            clip: rect(17px, 9999px, 82px, 0);
+        }
+        80% {
+            clip: rect(59px, 9999px, 76px, 0);
+        }
+        85% {
+            clip: rect(86px, 9999px, 76px, 0);
+        }
+        90% {
+            clip: rect(59px, 9999px, 56px, 0);
+        }
+        95% {
+            clip: rect(76px, 9999px, 2px, 0);
+        }
+        100% {
+            clip: rect(16px, 9999px, 93px, 0);
+        }
+    }
+    @keyframes c1 {
+        0% {
+            clip: rect(51px, 9999px, 80px, 0);
+        }
+        5% {
+            clip: rect(12px, 9999px, 55px, 0);
+        }
+        10% {
+            clip: rect(31px, 9999px, 92px, 0);
+        }
+        15.000000000000002% {
+            clip: rect(88px, 9999px, 49px, 0);
+        }
+        20% {
+            clip: rect(84px, 9999px, 32px, 0);
+        }
+        25% {
+            clip: rect(36px, 9999px, 73px, 0);
+        }
+        30.000000000000004% {
+            clip: rect(19px, 9999px, 10px, 0);
+        }
+        35.00000000000001% {
+            clip: rect(31px, 9999px, 56px, 0);
+        }
+        40% {
+            clip: rect(93px, 9999px, 30px, 0);
+        }
+        45% {
+            clip: rect(5px, 9999px, 22px, 0);
+        }
+        50% {
+            clip: rect(86px, 9999px, 39px, 0);
+        }
+        55% {
+            clip: rect(95px, 9999px, 99px, 0);
+        }
+        60.00000000000001% {
+            clip: rect(98px, 9999px, 79px, 0);
+        }
+        65% {
+            clip: rect(30px, 9999px, 33px, 0);
+        }
+        70.00000000000001% {
+            clip: rect(79px, 9999px, 15px, 0);
+        }
+        75% {
+            clip: rect(17px, 9999px, 82px, 0);
+        }
+        80% {
+            clip: rect(59px, 9999px, 76px, 0);
+        }
+        85% {
+            clip: rect(86px, 9999px, 76px, 0);
+        }
+        90% {
+            clip: rect(59px, 9999px, 56px, 0);
+        }
+        95% {
+            clip: rect(76px, 9999px, 2px, 0);
+        }
+        100% {
+            clip: rect(16px, 9999px, 93px, 0);
+        }
+    }
+    @-webkit-keyframes c2 {
+        0% {
+            clip: rect(89px, 9999px, 93px, 0);
+        }
+        5% {
+            clip: rect(64px, 9999px, 67px, 0);
+        }
+        10% {
+            clip: rect(64px, 9999px, 72px, 0);
+        }
+        15.000000000000002% {
+            clip: rect(1px, 9999px, 67px, 0);
+        }
+        20% {
+            clip: rect(12px, 9999px, 79px, 0);
+        }
+        25% {
+            clip: rect(15px, 9999px, 42px, 0);
+        }
+        30.000000000000004% {
+            clip: rect(33px, 9999px, 20px, 0);
+        }
+        35.00000000000001% {
+            clip: rect(13px, 9999px, 70px, 0);
+        }
+        40% {
+            clip: rect(61px, 9999px, 86px, 0);
+        }
+        45% {
+            clip: rect(35px, 9999px, 69px, 0);
+        }
+        50% {
+            clip: rect(41px, 9999px, 76px, 0);
+        }
+        55% {
+            clip: rect(6px, 9999px, 57px, 0);
+        }
+        60.00000000000001% {
+            clip: rect(59px, 9999px, 77px, 0);
+        }
+        65% {
+            clip: rect(66px, 9999px, 96px, 0);
+        }
+        70.00000000000001% {
+            clip: rect(81px, 9999px, 21px, 0);
+        }
+        75% {
+            clip: rect(67px, 9999px, 52px, 0);
+        }
+        80% {
+            clip: rect(49px, 9999px, 32px, 0);
+        }
+        85% {
+            clip: rect(48px, 9999px, 23px, 0);
+        }
+        90% {
+            clip: rect(19px, 9999px, 65px, 0);
+        }
+        95% {
+            clip: rect(78px, 9999px, 49px, 0);
+        }
+        100% {
+            clip: rect(65px, 9999px, 69px, 0);
+        }
+        23% {
+            transform: scaleX(0.8);
+        }
+    }
+    @keyframes c2 {
+        0% {
+            clip: rect(89px, 9999px, 93px, 0);
+        }
+        5% {
+            clip: rect(64px, 9999px, 67px, 0);
+        }
+        10% {
+            clip: rect(64px, 9999px, 72px, 0);
+        }
+        15.000000000000002% {
+            clip: rect(1px, 9999px, 67px, 0);
+        }
+        20% {
+            clip: rect(12px, 9999px, 79px, 0);
+        }
+        25% {
+            clip: rect(15px, 9999px, 42px, 0);
+        }
+        30.000000000000004% {
+            clip: rect(33px, 9999px, 20px, 0);
+        }
+        35.00000000000001% {
+            clip: rect(13px, 9999px, 70px, 0);
+        }
+        40% {
+            clip: rect(61px, 9999px, 86px, 0);
+        }
+        45% {
+            clip: rect(35px, 9999px, 69px, 0);
+        }
+        50% {
+            clip: rect(41px, 9999px, 76px, 0);
+        }
+        55% {
+            clip: rect(6px, 9999px, 57px, 0);
+        }
+        60.00000000000001% {
+            clip: rect(59px, 9999px, 77px, 0);
+        }
+        65% {
+            clip: rect(66px, 9999px, 96px, 0);
+        }
+        70.00000000000001% {
+            clip: rect(81px, 9999px, 21px, 0);
+        }
+        75% {
+            clip: rect(67px, 9999px, 52px, 0);
+        }
+        80% {
+            clip: rect(49px, 9999px, 32px, 0);
+        }
+        85% {
+            clip: rect(48px, 9999px, 23px, 0);
+        }
+        90% {
+            clip: rect(19px, 9999px, 65px, 0);
+        }
+        95% {
+            clip: rect(78px, 9999px, 49px, 0);
+        }
+        100% {
+            clip: rect(65px, 9999px, 69px, 0);
+        }
+        23% {
+            transform: scaleX(0.8);
+        }
+    }
+    @-webkit-keyframes clock-bag {
+        0% {
+            transform: translate(1px, 1px);
+        }
+        2% {
+            transform: translate(4px, 1px);
+        }
+        4% {
+            transform: translate(5px, 2px);
+        }
+        6% {
+            transform: translate(3px, 1px);
+        }
+        8% {
+            transform: translate(3px, 4px);
+        }
+        10% {
+            transform: translate(4px, 5px);
+        }
+        12% {
+            transform: translate(2px, 3px);
+        }
+        14.000000000000002% {
+            transform: translate(2px, 4px);
+        }
+        16% {
+            transform: translate(5px, 2px);
+        }
+        18% {
+            transform: translate(4px, 3px);
+        }
+        20% {
+            transform: translate(1px, 4px);
+        }
+        22% {
+            transform: translate(5px, 1px);
+        }
+        24% {
+            transform: translate(3px, 4px);
+        }
+        26% {
+            transform: translate(2px, 2px);
+        }
+        28.000000000000004% {
+            transform: translate(5px, 5px);
+        }
+        30% {
+            transform: translate(5px, 5px);
+        }
+        32% {
+            transform: translate(2px, 5px);
+        }
+        34% {
+            transform: translate(3px, 5px);
+        }
+        36% {
+            transform: translate(2px, 3px);
+        }
+        38% {
+            transform: translate(1px, 3px);
+        }
+        40% {
+            transform: translate(3px, 5px);
+        }
+        42% {
+            transform: translate(3px, 1px);
+        }
+        44% {
+            transform: translate(5px, 3px);
+        }
+        46.00000000000001% {
+            transform: translate(4px, 3px);
+        }
+        48% {
+            transform: translate(1px, 4px);
+        }
+        50% {
+            transform: translate(2px, 4px);
+        }
+        52% {
+            transform: translate(4px, 1px);
+        }
+        54% {
+            transform: translate(3px, 1px);
+        }
+        56.00000000000001% {
+            transform: translate(2px, 1px);
+        }
+        58% {
+            transform: translate(3px, 4px);
+        }
+        60% {
+            transform: translate(1px, 4px);
+        }
+        62% {
+            transform: translate(5px, 5px);
+        }
+        64% {
+            transform: translate(1px, 2px);
+        }
+        66% {
+            transform: translate(2px, 2px);
+        }
+        68% {
+            transform: translate(2px, 2px);
+        }
+        70.00000000000001% {
+            transform: translate(1px, 5px);
+        }
+        72% {
+            transform: translate(4px, 2px);
+        }
+        74% {
+            transform: translate(1px, 4px);
+        }
+        76% {
+            transform: translate(1px, 1px);
+        }
+        78% {
+            transform: translate(1px, 2px);
+        }
+        80% {
+            transform: translate(1px, 5px);
+        }
+        82.00000000000001% {
+            transform: translate(1px, 5px);
+        }
+        84% {
+            transform: translate(4px, 1px);
+        }
+        86% {
+            transform: translate(5px, 4px);
+        }
+        88% {
+            transform: translate(3px, 1px);
+        }
+        90% {
+            transform: translate(4px, 2px);
+        }
+        92.00000000000001% {
+            transform: translate(5px, 1px);
+        }
+        94% {
+            transform: translate(4px, 1px);
+        }
+        96% {
+            transform: translate(2px, 1px);
+        }
+        98% {
+            transform: translate(4px, 5px);
+        }
+        100% {
+            transform: translate(4px, 1px);
+        }
+        1% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        1.5% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        2% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        51% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+        52% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+        }
+        53% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+    }
+    @keyframes clock-bag {
+        0% {
+            transform: translate(1px, 1px);
+        }
+        2% {
+            transform: translate(4px, 1px);
+        }
+        4% {
+            transform: translate(5px, 2px);
+        }
+        6% {
+            transform: translate(3px, 1px);
+        }
+        8% {
+            transform: translate(3px, 4px);
+        }
+        10% {
+            transform: translate(4px, 5px);
+        }
+        12% {
+            transform: translate(2px, 3px);
+        }
+        14.000000000000002% {
+            transform: translate(2px, 4px);
+        }
+        16% {
+            transform: translate(5px, 2px);
+        }
+        18% {
+            transform: translate(4px, 3px);
+        }
+        20% {
+            transform: translate(1px, 4px);
+        }
+        22% {
+            transform: translate(5px, 1px);
+        }
+        24% {
+            transform: translate(3px, 4px);
+        }
+        26% {
+            transform: translate(2px, 2px);
+        }
+        28.000000000000004% {
+            transform: translate(5px, 5px);
+        }
+        30% {
+            transform: translate(5px, 5px);
+        }
+        32% {
+            transform: translate(2px, 5px);
+        }
+        34% {
+            transform: translate(3px, 5px);
+        }
+        36% {
+            transform: translate(2px, 3px);
+        }
+        38% {
+            transform: translate(1px, 3px);
+        }
+        40% {
+            transform: translate(3px, 5px);
+        }
+        42% {
+            transform: translate(3px, 1px);
+        }
+        44% {
+            transform: translate(5px, 3px);
+        }
+        46.00000000000001% {
+            transform: translate(4px, 3px);
+        }
+        48% {
+            transform: translate(1px, 4px);
+        }
+        50% {
+            transform: translate(2px, 4px);
+        }
+        52% {
+            transform: translate(4px, 1px);
+        }
+        54% {
+            transform: translate(3px, 1px);
+        }
+        56.00000000000001% {
+            transform: translate(2px, 1px);
+        }
+        58% {
+            transform: translate(3px, 4px);
+        }
+        60% {
+            transform: translate(1px, 4px);
+        }
+        62% {
+            transform: translate(5px, 5px);
+        }
+        64% {
+            transform: translate(1px, 2px);
+        }
+        66% {
+            transform: translate(2px, 2px);
+        }
+        68% {
+            transform: translate(2px, 2px);
+        }
+        70.00000000000001% {
+            transform: translate(1px, 5px);
+        }
+        72% {
+            transform: translate(4px, 2px);
+        }
+        74% {
+            transform: translate(1px, 4px);
+        }
+        76% {
+            transform: translate(1px, 1px);
+        }
+        78% {
+            transform: translate(1px, 2px);
+        }
+        80% {
+            transform: translate(1px, 5px);
+        }
+        82.00000000000001% {
+            transform: translate(1px, 5px);
+        }
+        84% {
+            transform: translate(4px, 1px);
+        }
+        86% {
+            transform: translate(5px, 4px);
+        }
+        88% {
+            transform: translate(3px, 1px);
+        }
+        90% {
+            transform: translate(4px, 2px);
+        }
+        92.00000000000001% {
+            transform: translate(5px, 1px);
+        }
+        94% {
+            transform: translate(4px, 1px);
+        }
+        96% {
+            transform: translate(2px, 1px);
+        }
+        98% {
+            transform: translate(4px, 5px);
+        }
+        100% {
+            transform: translate(4px, 1px);
+        }
+        1% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        1.5% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        2% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        51% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+        52% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+        }
+        53% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+    }
+    @-webkit-keyframes tr-bag {
+        0% {
+            transform: translate(3px, 3px);
+        }
+        2% {
+            transform: translate(5px, 1px);
+        }
+        4% {
+            transform: translate(4px, 4px);
+        }
+        6% {
+            transform: translate(4px, 4px);
+        }
+        8% {
+            transform: translate(3px, 4px);
+        }
+        10% {
+            transform: translate(3px, 4px);
+        }
+        12% {
+            transform: translate(2px, 4px);
+        }
+        14.000000000000002% {
+            transform: translate(1px, 3px);
+        }
+        16% {
+            transform: translate(1px, 1px);
+        }
+        18% {
+            transform: translate(5px, 1px);
+        }
+        20% {
+            transform: translate(1px, 2px);
+        }
+        22% {
+            transform: translate(5px, 5px);
+        }
+        24% {
+            transform: translate(3px, 1px);
+        }
+        26% {
+            transform: translate(4px, 3px);
+        }
+        28.000000000000004% {
+            transform: translate(2px, 3px);
+        }
+        30% {
+            transform: translate(1px, 4px);
+        }
+        32% {
+            transform: translate(2px, 2px);
+        }
+        34% {
+            transform: translate(2px, 3px);
+        }
+        36% {
+            transform: translate(3px, 2px);
+        }
+        38% {
+            transform: translate(3px, 5px);
+        }
+        40% {
+            transform: translate(1px, 2px);
+        }
+        42% {
+            transform: translate(5px, 4px);
+        }
+        44% {
+            transform: translate(4px, 2px);
+        }
+        46.00000000000001% {
+            transform: translate(3px, 2px);
+        }
+        48% {
+            transform: translate(4px, 5px);
+        }
+        50% {
+            transform: translate(5px, 1px);
+        }
+        52% {
+            transform: translate(1px, 5px);
+        }
+        54% {
+            transform: translate(4px, 2px);
+        }
+        56.00000000000001% {
+            transform: translate(5px, 5px);
+        }
+        58% {
+            transform: translate(2px, 2px);
+        }
+        60% {
+            transform: translate(1px, 4px);
+        }
+        62% {
+            transform: translate(3px, 2px);
+        }
+        64% {
+            transform: translate(1px, 5px);
+        }
+        66% {
+            transform: translate(1px, 2px);
+        }
+        68% {
+            transform: translate(4px, 2px);
+        }
+        70.00000000000001% {
+            transform: translate(3px, 5px);
+        }
+        72% {
+            transform: translate(4px, 1px);
+        }
+        74% {
+            transform: translate(5px, 4px);
+        }
+        76% {
+            transform: translate(5px, 3px);
+        }
+        78% {
+            transform: translate(1px, 1px);
+        }
+        80% {
+            transform: translate(3px, 5px);
+        }
+        82.00000000000001% {
+            transform: translate(3px, 2px);
+        }
+        84% {
+            transform: translate(4px, 4px);
+        }
+        86% {
+            transform: translate(1px, 1px);
+        }
+        88% {
+            transform: translate(1px, 3px);
+        }
+        90% {
+            transform: translate(3px, 1px);
+        }
+        92.00000000000001% {
+            transform: translate(2px, 4px);
+        }
+        94% {
+            transform: translate(3px, 5px);
+        }
+        96% {
+            transform: translate(5px, 4px);
+        }
+        98% {
+            transform: translate(5px, 1px);
+        }
+        100% {
+            transform: translate(5px, 2px);
+        }
+        1% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        1.5% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        2% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        51% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+        52% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+        }
+        53% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+    }
+    @keyframes tr-bag {
+        0% {
+            transform: translate(3px, 3px);
+        }
+        2% {
+            transform: translate(5px, 1px);
+        }
+        4% {
+            transform: translate(4px, 4px);
+        }
+        6% {
+            transform: translate(4px, 4px);
+        }
+        8% {
+            transform: translate(3px, 4px);
+        }
+        10% {
+            transform: translate(3px, 4px);
+        }
+        12% {
+            transform: translate(2px, 4px);
+        }
+        14.000000000000002% {
+            transform: translate(1px, 3px);
+        }
+        16% {
+            transform: translate(1px, 1px);
+        }
+        18% {
+            transform: translate(5px, 1px);
+        }
+        20% {
+            transform: translate(1px, 2px);
+        }
+        22% {
+            transform: translate(5px, 5px);
+        }
+        24% {
+            transform: translate(3px, 1px);
+        }
+        26% {
+            transform: translate(4px, 3px);
+        }
+        28.000000000000004% {
+            transform: translate(2px, 3px);
+        }
+        30% {
+            transform: translate(1px, 4px);
+        }
+        32% {
+            transform: translate(2px, 2px);
+        }
+        34% {
+            transform: translate(2px, 3px);
+        }
+        36% {
+            transform: translate(3px, 2px);
+        }
+        38% {
+            transform: translate(3px, 5px);
+        }
+        40% {
+            transform: translate(1px, 2px);
+        }
+        42% {
+            transform: translate(5px, 4px);
+        }
+        44% {
+            transform: translate(4px, 2px);
+        }
+        46.00000000000001% {
+            transform: translate(3px, 2px);
+        }
+        48% {
+            transform: translate(4px, 5px);
+        }
+        50% {
+            transform: translate(5px, 1px);
+        }
+        52% {
+            transform: translate(1px, 5px);
+        }
+        54% {
+            transform: translate(4px, 2px);
+        }
+        56.00000000000001% {
+            transform: translate(5px, 5px);
+        }
+        58% {
+            transform: translate(2px, 2px);
+        }
+        60% {
+            transform: translate(1px, 4px);
+        }
+        62% {
+            transform: translate(3px, 2px);
+        }
+        64% {
+            transform: translate(1px, 5px);
+        }
+        66% {
+            transform: translate(1px, 2px);
+        }
+        68% {
+            transform: translate(4px, 2px);
+        }
+        70.00000000000001% {
+            transform: translate(3px, 5px);
+        }
+        72% {
+            transform: translate(4px, 1px);
+        }
+        74% {
+            transform: translate(5px, 4px);
+        }
+        76% {
+            transform: translate(5px, 3px);
+        }
+        78% {
+            transform: translate(1px, 1px);
+        }
+        80% {
+            transform: translate(3px, 5px);
+        }
+        82.00000000000001% {
+            transform: translate(3px, 2px);
+        }
+        84% {
+            transform: translate(4px, 4px);
+        }
+        86% {
+            transform: translate(1px, 1px);
+        }
+        88% {
+            transform: translate(1px, 3px);
+        }
+        90% {
+            transform: translate(3px, 1px);
+        }
+        92.00000000000001% {
+            transform: translate(2px, 4px);
+        }
+        94% {
+            transform: translate(3px, 5px);
+        }
+        96% {
+            transform: translate(5px, 4px);
+        }
+        98% {
+            transform: translate(5px, 1px);
+        }
+        100% {
+            transform: translate(5px, 2px);
+        }
+        1% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        1.5% {
+            transform: scaleY(3) skewX(-60deg);
+        }
+        2% {
+            transform: scaleY(1) skewX(0deg);
+        }
+        51% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+        52% {
+            transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+        }
+        53% {
+            transform: scaleX(1) scaleY(1) skewX(0deg);
+        }
+    }
+    @-webkit-keyframes bg-move {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 0 -32px;
+        }
+    }
+    @keyframes bg-move {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 0 -32px;
+        }
+    }
+
+</style>
+<style>
+    @keyframes stageBackground {
+        0%, 10%, 90%, 100% {
+            background-color: #00B6BB;
+        }
+
+        25%, 75% {
+            background-color: #0094bd;
+        }
+    }
+    @keyframes earthRotation {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes sunrise {
+        0%, 10%, 90%, 100% {
+            box-shadow: 0 0 0 25px #5ad6bd, 0 0 0 40px #4acead, 0 0 0 60px rgba(74, 206, 173, 0.6), 0 0 0 90px rgba(74, 206, 173, 0.3);
+        }
+
+        25%, 75% {
+            box-shadow: 0 0 0 0 #5ad6bd, 0 0 0 0 #4acead, 0 0 0 0 rgba(74, 206, 173, 0.6), 0 0 0 0 rgba(74, 206, 173, 0.3);
+        }
+    }
+    @keyframes moonOrbit {
+        25% {
+            transform: rotate(-60deg);
+        }
+
+        50% {
+            transform: rotate(-60deg);
+        }
+
+        75% {
+            transform: rotate(-120deg);
+        }
+
+        0%, 100% {
+            transform: rotate(-180deg);
+        }
+    }
+    @keyframes nightTime {
+        0%, 90% {
+            opacity: 0;
+        }
+
+        50%, 75% {
+            opacity: 1;
+        }
+    }
+    @keyframes hotPan {
+        0%, 90% {
+            background-color: #74667e;
+        }
+
+        50%, 75% {
+            background-color: #b2241c;
+        }
+    }
+    @keyframes heat {
+        0%, 90% {
+            box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0.3);
+        }
+
+        50%, 75% {
+            box-shadow: inset 0 -2px 0 0 white;
+        }
+    }
+    @keyframes smoke {
+        0%, 50%, 90%, 100% {
+            opacity: 0;
+        }
+
+        50%, 75% {
+            opacity: 0.7;
+        }
+    }
+    @keyframes fire {
+        0%, 90%, 100% {
+            opacity: 0;
+        }
+
+        50%, 75% {
+            opacity: 1;
+        }
+    }
+    @keyframes treeShake {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(-1deg);
+        }
+
+        40% {
+            transform: rotate(2deg);
+        }
+
+        50% {
+            transform: rotate(-2deg);
+        }
+
+        60% {
+            transform: rotate(3deg);
+        }
+
+        75% {
+            transform: rotate(-3deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    @keyframes fireParticles {
+        0% {
+            height: 30%;
+            opacity: 1;
+            top: 75%;
+        }
+
+        25% {
+            height: 25%;
+            opacity: 0.8;
+            top: 40%;
+        }
+
+        50% {
+            height: 15%;
+            opacity: 0.6;
+            top: 20%;
+        }
+
+        75% {
+            height: 10%;
+            opacity: 0.3;
+            top: 0;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fireLines {
+        0%, 25%, 75%, 100% {
+            bottom: 0;
+        }
+
+        50% {
+            bottom: 5%;
+        }
+    }
+
+    .scene {
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: flex-end;
+        width: 400px;
+        height: 300px;
+        position: relative;
+    }
+
+    .forest {
+        display: flex;
+        width: 75%;
+        height: 90%;
+        position: relative;
+    }
+
+    .tree {
+        display: block;
+        width: 50%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0.4;
+    }
+
+    .tree .branch {
+        width: 80%;
+        height: 0;
+        margin: 0 auto;
+        padding-left: 40%;
+        padding-bottom: 50%;
+        overflow: hidden;
+    }
+
+    .tree .branch:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        margin-left: -600px;
+        border-left: 600px solid transparent;
+        border-right: 600px solid transparent;
+        border-bottom: 950px solid #000;
+    }
+
+    .tree .branch.branch-top {
+        transform-origin: 50% 100%;
+        animation: treeShake 3s linear infinite;
+    }
+
+    .tree .branch.branch-middle {
+        width: 90%;
+        padding-left: 45%;
+        padding-bottom: 65%;
+        margin: 0 auto;
+        margin-top: -25%;
+    }
+
+    .tree .branch.branch-bottom {
+        width: 100%;
+        padding-left: 50%;
+        padding-bottom: 80%;
+        margin: 0 auto;
+        margin-top: -40%;
+    }
+
+    .tree1 {
+        width: 31%;
+    }
+
+    .tree1 .branch-top {
+        transition-delay: 0.3s;
+    }
+
+    .tree2 {
+        width: 39%;
+        left: 9%;
+    }
+
+    .tree2 .branch-top {
+        transition-delay: 0.4s;
+    }
+
+    .tree3 {
+        width: 32%;
+        left: 24%;
+    }
+
+    .tree3 .branch-top {
+        transition-delay: 0.5s;
+    }
+
+    .tree4 {
+        width: 37%;
+        left: 34%;
+    }
+
+    .tree4 .branch-top {
+        transition-delay: 0.6s;
+    }
+
+    .tree5 {
+        width: 44%;
+        left: 44%;
+    }
+
+    .tree5 .branch-top {
+        transition-delay: 0.7s;
+    }
+
+    .tree6 {
+        width: 34%;
+        left: 61%;
+    }
+
+    .tree6 .branch-top {
+        transition-delay: 0.2s;
+    }
+
+    .tree7 {
+        width: 24%;
+        left: 76%;
+    }
+
+    .tree7 .branch-top {
+        transition-delay: 0.1s;
+    }
+
+    .tent {
+        width: 60%;
+        height: 25%;
+        position: absolute;
+        bottom: -0.5%;
+        right: 15%;
+        z-index: 1;
+        text-align: right;
+    }
+
+    .roof {
+        display: inline-block;
+        width: 45%;
+        height: 100%;
+        margin-right: 10%;
+        position: relative;
+        /*bottom: 0;
+        right: 9%;*/
+        z-index: 1;
+        border-top: 4px solid #4D4454;
+        border-right: 4px solid #4D4454;
+        border-left: 4px solid #4D4454;
+        border-top-right-radius: 6px;
+        transform: skew(30deg);
+        box-shadow: inset -3px 3px 0px 0px #F7B563;
+        /*background: linear-gradient(
+          to bottom,
+          rgba(246,212,132,1) 0%,
+          rgba(246,212,132,1) 24%,
+          rgba(#F0B656,1) 25%,
+          rgba(#F0B656,1) 74%,
+          rgba(235,151,53,1) 75%,
+          rgba(235,151,53,1) 100%
+        );*/
+        background: #f6d484;
+    }
+
+    .roof:before {
+        content: "";
+        width: 70%;
+        height: 70%;
+        position: absolute;
+        top: 15%;
+        left: 15%;
+        z-index: 0;
+        border-radius: 10%;
+        background-color: #E78C20;
+    }
+
+    .roof:after {
+        content: "";
+        height: 75%;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background: linear-gradient(to bottom, rgba(231, 140, 32, 0.4) 0%, rgba(231, 140, 32, 0.4) 64%, rgba(231, 140, 32, 0.8) 65%, rgba(231, 140, 32, 0.8) 100%);
+    }
+
+    .roof-border-left {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 1%;
+        height: 125%;
+        position: absolute;
+        top: 0;
+        left: 35.7%;
+        z-index: 1;
+        transform-origin: 50% 0%;
+        transform: rotate(35deg);
+    }
+
+    .roof-border-left .roof-border {
+        display: block;
+        width: 100%;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+    }
+
+    .roof-border-left .roof-border1 {
+        height: 40%;
+    }
+
+    .roof-border-left .roof-border2 {
+        height: 10%;
+    }
+
+    .roof-border-left .roof-border3 {
+        height: 40%;
+    }
+
+    .door {
+        width: 55px;
+        height: 92px;
+        position: absolute;
+        bottom: 2%;
+        overflow: hidden;
+        z-index: 0;
+        transform-origin: 0 105%;
+    }
+
+    .left-door {
+        transform: rotate(35deg);
+        position: absolute;
+        left: 13.5%;
+        bottom: -3%;
+        z-index: 0;
+    }
+
+    .left-door .left-door-inner {
+        width: 100%;
+        height: 100%;
+        transform-origin: 0 105%;
+        transform: rotate(-35deg);
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        background-color: #EDDDC2;
+    }
+
+    .left-door .left-door-inner:before {
+        content: "";
+        width: 15%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: repeating-linear-gradient(#D4BC8B, #D4BC8B 4%, #E0D2A8 5%, #E0D2A8 10%);
+    }
+
+    .left-door .left-door-inner:after {
+        content: "";
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 15%;
+        left: 10%;
+        transform: rotate(25deg);
+        background-color: #fff;
+    }
+
+    .right-door {
+        height: 89px;
+        right: 21%;
+        transform-origin: 0 105%;
+        transform: rotate(-30deg) scaleX(-1);
+        position: absolute;
+        bottom: -3%;
+        z-index: 0;
+    }
+
+    .right-door .right-door-inner {
+        width: 100%;
+        height: 100%;
+        transform-origin: 0 120%;
+        transform: rotate(-30deg);
+        position: absolute;
+        bottom: 0px;
+        overflow: hidden;
+        background-color: #EFE7CF;
+    }
+
+    .right-door .right-door-inner:before {
+        content: "";
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 15%;
+        right: -28%;
+        z-index: 1;
+        transform: rotate(15deg);
+        background-color: #524A5A;
+    }
+
+    .right-door .right-door-inner:after {
+        content: "";
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 15%;
+        right: -20%;
+        transform: rotate(20deg);
+        background-color: #fff;
+    }
+
+    .floor {
+        width: 80%;
+        position: absolute;
+        right: 10%;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .floor .ground {
+        position: absolute;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+    }
+
+    .floor .ground.ground1 {
+        width: 65%;
+        left: 0;
+    }
+
+    .floor .ground.ground2 {
+        width: 30%;
+        right: 0;
+    }
+
+    .fireplace {
+        display: block;
+        width: 24%;
+        height: 20%;
+        position: absolute;
+        left: 5%;
+    }
+
+    .fireplace:before {
+        content: "";
+        display: block;
+        width: 8%;
+        position: absolute;
+        bottom: -4px;
+        left: 2%;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+        background: #4D4454;
+    }
+
+    .fireplace .support {
+        display: block;
+        height: 105%;
+        width: 2px;
+        position: absolute;
+        bottom: -5%;
+        left: 10%;
+        border: 2px solid #4D4454;
+    }
+
+    .fireplace .support:before {
+        content: "";
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: -18%;
+        left: -4px;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+        transform-origin: 100% 100%;
+        transform: rotate(45deg);
+    }
+
+    .fireplace .support:after {
+        content: "";
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: -18%;
+        left: 0px;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+        transform-origin: 0 100%;
+        transform: rotate(-45deg);
+    }
+
+    .fireplace .support:nth-child(1) {
+        left: 85%;
+    }
+
+    .fireplace .bar {
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        border: 2px solid #4D4454;
+    }
+
+    .fireplace .hanger {
+        display: block;
+        width: 2px;
+        height: 25%;
+        margin-left: -4px;
+        position: absolute;
+        left: 50%;
+        border: 2px solid #4D4454;
+    }
+
+    .fireplace .pan {
+        display: block;
+        width: 25%;
+        height: 50%;
+        border-radius: 50%;
+        border: 4px solid #4D4454;
+        position: absolute;
+        top: 25%;
+        left: 35%;
+        overflow: hidden;
+        animation: heat 5s linear infinite;
+    }
+
+    .fireplace .pan:before {
+        content: "";
+        display: block;
+        height: 53%;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+        border-top: 4px solid #4D4454;
+        background-color: #74667e;
+        animation: hotPan 5s linear infinite;
+    }
+
+    .fireplace .smoke {
+        display: block;
+        width: 20%;
+        height: 25%;
+        position: absolute;
+        top: 25%;
+        left: 37%;
+        background-color: white;
+        filter: blur(5px);
+        animation: smoke 5s linear infinite;
+    }
+
+    .fireplace .fire {
+        display: block;
+        width: 25%;
+        height: 120%;
+        position: absolute;
+        bottom: 0;
+        left: 33%;
+        z-index: 1;
+        animation: fire 5s linear infinite;
+    }
+
+    .fireplace .fire:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        bottom: -4px;
+        z-index: 1;
+        border-radius: 2px;
+        border: 1px solid #efb54a;
+        background-color: #efb54a;
+    }
+
+    .fireplace .fire .line {
+        display: block;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        animation: fireLines 1s linear infinite;
+    }
+
+    .fireplace .fire .line2 {
+        left: 50%;
+        margin-left: -1px;
+        animation-delay: 0.3s;
+    }
+
+    .fireplace .fire .line3 {
+        right: 0;
+        animation-delay: 0.5s;
+    }
+
+    .fireplace .fire .line .particle {
+        height: 10%;
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        border-radius: 2px;
+        border: 2px solid #efb54a;
+        animation: fireParticles 0.5s linear infinite;
+    }
+
+    .fireplace .fire .line .particle1 {
+        animation-delay: 0.1s;
+    }
+
+    .fireplace .fire .line .particle2 {
+        animation-delay: 0.3s;
+    }
+
+    .fireplace .fire .line .particle3 {
+        animation-delay: 0.6s;
+    }
+
+    .fireplace .fire .line .particle4 {
+        animation-delay: 0.9s;
+    }
+
+    .time-wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .time {
+        display: block;
+        width: 100%;
+        height: 200%;
+        position: absolute;
+        transform-origin: 50% 50%;
+        transform: rotate(270deg);
+        animation: earthRotation 5s linear infinite;
+    }
+
+    .time .day {
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        border-radius: 50%;
+        box-shadow: 0 0 0 25px #5ad6bd, 0 0 0 40px #4acead, 0 0 0 60px rgba(74, 206, 173, 0.6), 0 0 0 90px rgba(74, 206, 173, 0.3);
+        animation: sunrise 5s ease-in-out infinite;
+        background-color: #ef9431;
+    }
+
+    .time .night {
+        animation: nightTime 5s ease-in-out infinite;
+    }
+
+    .time .night .star {
+        display: block;
+        width: 4px;
+        height: 4px;
+        position: absolute;
+        bottom: 10%;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+    .time .night .star-big {
+        width: 6px;
+        height: 6px;
+    }
+
+    .time .night .star1 {
+        right: 23%;
+        bottom: 25%;
+    }
+
+    .time .night .star2 {
+        right: 35%;
+        bottom: 18%;
+    }
+
+    .time .night .star3 {
+        right: 47%;
+        bottom: 25%;
+    }
+
+    .time .night .star4 {
+        right: 22%;
+        bottom: 20%;
+    }
+
+    .time .night .star5 {
+        right: 18%;
+        bottom: 30%;
+    }
+
+    .time .night .star6 {
+        right: 60%;
+        bottom: 20%;
+    }
+
+    .time .night .star7 {
+        right: 70%;
+        bottom: 23%;
+    }
+
+    .time .night .moon {
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        bottom: 22%;
+        right: 33%;
+        border-radius: 50%;
+        transform: rotate(-60deg);
+        box-shadow: 9px 9px 3px 0 white;
+        filter: blur(1px);
+        animation: moonOrbit 5s ease-in-out infinite;
+    }
+
+    .time .night .moon:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: -9px;
+        left: 9px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05), 0 0 0 15px rgba(255, 255, 255, 0.05), 0 0 0 25px rgba(255, 255, 255, 0.05), 0 0 0 35px rgba(255, 255, 255, 0.05);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+</style>
+<script>
+    //退休倒计时
+    const { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                msg: 'Hello Vue!',
+                //退休日期
+                retireDate: '2050-09-11',
+                //当前日期
+                currentDate: '',
+                //剩余天数
+                remainDays: '',
+                //剩余月数
+                remainMonths: '',
+                //剩余年数
+                remainYears: '',
+                //剩余小时数
+                remainHours: '',
+                //剩余分钟数
+                remainMinutes: '',
+                //剩余秒数
+                remainSeconds: '',
+                second_passed:false,
+                realTime:''
+            }
+        },
+        methods: {
+            getRemains() {
+                this.currentDate = moment().format('YYYY-MM-DD HH:mm:ss')
+                const retireTime = moment(this.retireDate)
+                const currentTime = moment(this.currentDate)
+                let remianSeconds = retireTime.diff(currentTime, 'seconds')
+
+                this.remainDays = Math.floor(remianSeconds / (60 * 60 * 24))
+                //计算剩余年数
+                this.remainYears = _.padStart(Math.floor(remianSeconds / (60 * 60 * 24 * 30 * 12)), 4, '0')
+                //计算剩余月数
+                this.remainMonths = _.padStart(Math.floor(remianSeconds / (60 * 60 * 24 * 30))%12, 2, '0')
+
+                //不足两位，前面补零
+                this.remainHours = _.padStart(Math.floor(remianSeconds / (60 * 60))%24, 2, '0')
+                this.remainMinutes =_.padStart(Math.floor(remianSeconds / 60)%60, 2, '0')
+                this.remainSeconds = _.padStart(remianSeconds % 60, 2, '0')
+                this.realTime = this.remainHours  + ' : ' + this.remainMinutes + ' : ' + this.remainSeconds
+            },
+            secondPassed() {
+                this.second_passed=true
+            }
+        },
+        mounted() {
+            var that = this
+            this.getRemains()
+            setInterval(() => {
+                this.getRemains()
+            }, 1000)
+
+            setTimeout(this.secondPassed, 2000)
+
+        }
+    }).mount('#app')
+
+</script>
+</body>
+</html>
